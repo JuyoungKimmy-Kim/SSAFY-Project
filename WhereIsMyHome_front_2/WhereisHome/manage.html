@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Where is my home?</title>
+
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/main.css" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+
+    <script type="text/javascript" src="js/main.js"></script>
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Trirong"
+    />
+
+    <style>
+      .navbar-brand,
+      .nav-link active , .row{
+        font-family: "Trirong", serif;
+      }
+
+      #carouselExampleCaptions {
+        height: 30%;
+      }
+
+      .row, footer{
+        font-family: 'Noto Sans KR', sans-serif;
+
+      }
+
+      footer {
+      color: black;
+      clear: both;
+      margin: 10px auto;
+      padding: 10px;
+      max-width: 1200px;
+      height: 70px;
+    }
+
+  footer > ul > li {
+    float: left;
+    display: inline-block;
+    margin-right: 20px;
+    height: 50px;
+    line-height: 50px;
+  }
+
+    </style>
+
+
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Where is my home ? </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" a href="houselist.html">아파트 조회</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  회원 관리
+                </a>
+                
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li>
+                    <div id="header_nav_confirm_off">
+                    <a class="dropdown-item" href="#" onclick="login()"
+                      >로그인</a
+                    >
+                  </div>
+                  </li>
+
+                  <li>
+                    <div id="header_nav_confirm_on" style="display: none">
+                    <a class="dropdown-item" href="#" onclick="logout()"
+                      >로그아웃</a
+                    >
+                  </div>
+                  </li>
+
+
+                  <li><hr class="dropdown-divider" /></li>
+                  <li>
+                    <div id="header_nav_update" style="display: none">
+                    <a class="dropdown-item" a href="update.html"
+                      >회원 정보 수정</a
+                    >
+                  </div>
+                  </li>
+                  <li>
+                    <div id="header_nav_register">
+                    <a class="dropdown-item" a href="register.html"
+                      >회원 가입</a
+                    >
+                  </div>
+                  </li>
+               
+                  <li>
+                    <div id="header_nav_delete" style="display: none">
+                    <a class="dropdown-item" href="#" onclick="deleteUser()"
+                      >회원 탈퇴</a
+                    >
+                  </div>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item2">
+                <div id="header_nav_hello" style="display: none">
+                <a class="nav-link" href="#">
+                  김싸피님 반갑습니다 !</a
+                >
+              </div>
+              </li>
+            </ul>
+            <form class="d-flex">
+              <input
+                class="form-control me-2"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+              />
+              <button class="btn btn-outline-success" type="submit">
+                Search
+              </button>
+            </form>
+          </div>
+        </div>
+        <br />
+      </nav>
+
+
+
+      <!--상단 nav 종료-->
+
+      <br><br>
+      <div class="container">
+		<h2>
+			회원 관리<small> (관리자 모드)</small>
+		</h2>
+
+		<div class="panel panel-default">
+			<div class="panel-heading">회원 정보 입력</div>
+			<div class="panel-body">
+			    <!-- action="확장자 방식의 서블릿요청주소 -->
+				<form action="memberinsert.it" method="post">
+					<div class="form-group">
+						<!-- name="" 속성은 JSP 프로그램 진행시 필수 속성 -->
+						<!-- 식별자는 자료형 클래스의 멤버명으로 작성할 것 -->
+						<!-- 동일 자료 동일 식별자 원칙 -->	
+						<label for="name">이름:</label> <input type="text"
+							class="form-control" id="name" name="name" required>
+					</div>
+					<div class="form-group">
+						<label for="phone">전화번호:</label> <input type="text"
+							class="form-control" id="phone" name="phone" required>
+					</div>
+					<div class="form-group">
+						<label for="email">이메일:</label> <input type="text"
+							class="form-control" id="email" name="email" required>
+					</div>
+					
+					<!-- submit 버튼은 JSP 프로그램 진행시 필수 요소 -->
+					<!-- 폼 태그 범위 안에 위치해야 한다. -->
+					<!-- <button type="submit" class="btn btn-default">검색</button> -->
+                    <br>
+                    <button class="btn btn-primary btn-lg btn-block" type="submit">
+                        검색
+                      </button>
+					
+				</form>
+			</div>
+		</div>
+
+        <br><br>
+		<div class="panel panel-default">
+			<div class="panel-heading"><h3>전체 회원 명단 출력</div>
+			<div class="panel-body">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>번호</th>
+							<th>이름</th>
+							<th>전화번호</th>
+							<th>이메일</th>
+						</tr>
+					</thead>
+					<tbody>
+
+						<tr>
+							<td>1</td>
+							<td>김주영</td>
+							<td>010-1111-2222</td>
+							<td>kim@example.com</td>
+						</tr>
+						<tr>
+							<td>2</td>
+							<td>박성훈</td>
+							<td>010-3333-4444</td>
+							<td>park@example.com</td>
+						</tr> 
+						<!-- <%-- JSTL, EL을 이용한 동적 데이터 출력 --%>
+						<c:forEach var="m" items="${list}">
+						<tr>
+							<td>${m.mid}</td>
+							<td>${m.name}</td>
+							<td>${m.phone}</td>
+							<td>${m.email}</td>
+						</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+
+				<form method="post" class="form-inline">
+
+					<div class="form-group">
+						<button type="button" class="btn btn-default">
+
+							<%-- 문제) EL를 이용한 동적 데이터 출력 --%>
+							Count <span class="badge">${count}</span>
+						</button>
+					</div>
+
+					<div class="form-group">
+						<select class="form-control" name="skey" id="skey">
+							<option value="all">전체</option>
+							<option value="name">이름</option>
+							<option value="phone">전화번호</option>
+							<option value="email">이메일</option>
+						</select>
+					</div>
+
+					<div class="form-group">
+						<input type="text" class="form-control" id="svalue" name="svalue">
+					</div>
+
+					<button type="submit" class="btn btn-default">Search</button>
+
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+</html>
